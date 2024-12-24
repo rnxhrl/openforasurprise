@@ -28,23 +28,25 @@
             height: 100vh;
             text-align: justify;
             text-justify: inter-word;
+            padding: 10px;
         }
 
         .button-container {
             margin-top: 20px;
             display: flex;
-            gap: 20px; /* Add space between the buttons */
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .button-container img {
-            width: 300px; /* Set the image size */
-            height: 300px; /* Set the image size */
+            width: 100px;
+            height: 100px;
             cursor: pointer;
             transition: transform 0.3s;
         }
 
         .button-container img:hover {
-            transform: scale(1.1); /* Add hover effect */
+            transform: scale(1.1);
         }
 
         .page {
@@ -69,7 +71,9 @@
             border: 2px dashed gray;
             padding: 10px;
             margin: 10px;
-            width: 300px;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
         }
 
         .drawing {
@@ -92,51 +96,85 @@
             background: darkslateblue;
         }
 
-        /* Candle styles */
         .candles-container {
             display: flex;
-            gap: 30px;
+            gap: 15px;
             margin-top: 20px;
         }
 
         .candle {
-            width: 50px;
-            height: 120px;
-            background: #d3d3d3;
+            width: 30px;
+            height: 80px;
+            background: #dccd9b;
             position: relative;
-            border-radius: 10px;
+            border-radius: 5px;
         }
 
-        /* Flame styles */
         .flame {
-            width: 20px;
-            height: 30px;
+            width: 10px;
+            height: 15px;
             background-color: yellow;
             border-radius: 50%;
             position: absolute;
-            top: -15px;
+            top: -10px;
             left: 50%;
             transform: translateX(-50%);
             transition: opacity 0.3s ease;
         }
 
-        /* Blown out flame style (hidden) */
         .flame.blown-out {
             opacity: 0;
         }
-        .container {
-            display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            height: 100vh; /* Full viewport height */
-        }
+
         audio {
-            width: 20%;
-         /* Adjust the size of the audio player */
+            width: 100%;
+            max-width: 300px;
             background-color: transparent;
             position: absolute;
-            bottom: -1px;
-            left: 41%;
+            bottom: 10px;
+            left: 100%;
+            transform: translateX(-50%);
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+
+            .button-container img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .coupon {
+                font-size: 0.9rem;
+                padding: 5px;
+            }
+
+            .candles-container {
+                gap: 10px;
+            }
+
+            .candle {
+                width: 25px;
+                height: 60px;
+            }
+
+            .flame {
+                width: 8px;
+                height: 12px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+
+            audio {
+                max-width: 200px;
+            }
         }
     </style>
 </head>
