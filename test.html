@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Aniyah!</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            background: black;
+            color: white;
+            overflow: hidden;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px; /* Add space between the buttons */
+        }
+
+        .button-container img {
+            width: 300px; /* Set the image size */
+            height: 300px; /* Set the image size */
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .button-container img:hover {
+            transform: scale(1.1); /* Add hover effect */
+        }
+
+        .page {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            text-align: justify;
+            text-justify: inter-word;
+            padding: 20px;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        .coupon {
+            background: white;
+            color: black;
+            border: 2px dashed gray;
+            padding: 10px;
+            margin: 10px;
+            width: 300px;
+        }
+
+        .drawing {
+            width: 80%;
+            max-width: 600px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background: #94d9ff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: darkslateblue;
+        }
+
+        /* Candle styles */
+        .candles-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .candle {
+            width: 50px;
+            height: 120px;
+            background: #d3d3d3;
+            position: relative;
+            border-radius: 10px;
+        }
+
+        /* Flame styles */
+        .flame {
+            width: 20px;
+            height: 30px;
+            background-color: yellow;
+            border-radius: 50%;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: opacity 0.3s ease;
+        }
+
+        /* Blown out flame style (hidden) */
+        .flame.blown-out {
+            opacity: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full viewport height */
+        }
+        audio {
+            width: 20%;
+         /* Adjust the size of the audio player */
+            background-color: transparent;
+            position: absolute;
+            bottom: -1px;
+            left: 41%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background audio looping -->
+    <audio autoplay controls>
+        <source src="눈꽃.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <canvas id="background"></canvas>
+    <div class="container">
+        <h1>Happy Birthday,&nbsp Aniyah!</h1>
+        <div class="button-container">
+            <!-- Replace hearts with images -->
+            <img src="heart1.png" alt="Heart 1" onclick="showPage(1)">
+            <img src="heart2.png" alt="Heart 2" onclick="showPage(2)">
+            <img src="heart3.png" alt="Heart 3" onclick="showPage(3)">
+        </div>
+    </div>
+
+    <div id="page-1" class="page">
+        <h2>To the Most Amazing Person 🩷</h2>
+        <p>
+            Dear Aniyah,<br> 
+            <br>
+            Happy Birthday to one of the most special people in my life! On this wonderful day, I want to take a moment to tell you just how much you mean to me. <br>
+            Every year, your birthday reminds me of all the beautiful qualities that make you who you are—your kindness, your warmth,<br> Your ability to bring joy into the lives of everyone around you.<br>
+            I feel incredibly lucky to know you and to share so many memories with you.<br>
+            You've been a source of support, laughter, and love, and I want to thank you for being such an amazing person,<br> As you mean a lot to me and i hope you know that everytime you think of anything bad or everytime you feel lonely or even in happy moments too!!<br>
+            I am so grateful to have you in my life, you have a heart of gold, and I admire your strength, compassion, and the way you are!<BR> No matter what you think you are a blessing to have around and i mean it when i say you are incredibly an amazing soul.<br>
+            You are a good person and a greater friend (and a lovely lover), anyone who has you in their life is lucky nini🩷 <br>  
+            Here’s to celebrating you today, and to many more years of happiness, success, and unforgettable moments(esp with me winkwonk). <br>
+            <br>
+            I wish you a very happy birthday my love(i have alot more to say but im keeping it short)🩷🩷🩷.<br>
+            <br>
+            With all my love and warmest wishes,  <br>
+            —Han.
+        </p>
+        <button onclick="goBack()">Back</button>
+    </div>
+
+    <div id="page-2" class="page">
+        <h2>Birthday Coupons</h2>
+        <div class="coupon">Unlimited kisses!</div>
+        <div class="coupon">Date Night!</div>
+        <div class="coupon">Movie Night!</div>
+        <div class="coupon">Game Night!</div>
+        <div class="coupon">Your Wish X2!</div>
+        <button onclick="goBack()">Back</button>
+    </div>
+
+    <div id="page-3" class="page">
+        <h2>Blow Out the Candles!</h2>
+        <div class="candles-container">
+            <div class="candle" onclick="blowOutCandle(0)">
+                <div class="flame" id="flame-0"></div>
+            </div>
+            <div class="candle" onclick="blowOutCandle(1)">
+                <div class="flame" id="flame-1"></div>
+            </div>
+            <div class="candle" onclick="blowOutCandle(2)">
+                <div class="flame" id="flame-2"></div>
+            </div>
+        </div>
+        <div class="message" id="birthdayMessage" style="display: none;">
+            <p>Happy Birthday! All the candles are blown out! Make a wish!</p>
+        </div>
+        <button onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        function showPage(pageNumber) {
+            document.querySelector('.container').style.display = 'none';
+            document.getElementById(`page-${pageNumber}`).classList.add('active');
+        }
+
+        function goBack() {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelector('.container').style.display = 'flex';
+            resetCandles();  // Reset flames when going back
+        }
+
+        function blowOutCandle(candleIndex) {
+            const flame = document.getElementById(`flame-${candleIndex}`);
+            flame.classList.add('blown-out');
+            if (document.querySelectorAll('.flame.blown-out').length === 3) {
+                document.getElementById('birthdayMessage').style.display = 'block';
+            }
+        }
+
+        function resetCandles() {
+            document.querySelectorAll('.flame').forEach(flame => {
+                flame.classList.remove('blown-out');
+            });
+            document.getElementById('birthdayMessage').style.display = 'none';
+        }
+
+        // Initialize microphone functionality on page load
+        const canvas = document.getElementById('background');
+        const ctx = canvas.getContext('2d');
+    
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+    
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+    
+        const stars = Array.from({ length: 200 }).map(() => {
+            return {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2,
+                speed: Math.random() * 0.5 + 0.1
+            };
+        });
+    
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'white';
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+                star.y += star.speed;
+                if (star.y > canvas.height) {
+                    star.y = 0;
+                    star.x = Math.random() * canvas.width;
+                }
+            });
+            requestAnimationFrame(drawStars);
+        }
+    
+        drawStars();
+    </script>
+</body>
+</html>
